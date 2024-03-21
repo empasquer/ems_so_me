@@ -30,10 +30,12 @@ public class HomeController {
     public String getUserPosts(@PathVariable String username, Model model) {
         User user = userService.findUserByUsername(username);
         model.addAttribute(userService);
+        model.addAttribute(user);
+        System.out.println(user.getProfilePicture());
 
         if (user != null) {
             model.addAttribute("posts", postService.getPostsByUserId(user.getUserId()));
-            return "home/index";
+            return "home/user";
         } else {
             return "home/user_not_found";
         }

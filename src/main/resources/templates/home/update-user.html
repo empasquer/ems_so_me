@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/styles.css">
+    <title th:text="'Update ' + ${user.username}"></title>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="'Update ' + ${user.username}"></h1>
+    <form action="/update-user" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="userId" th:value="${user.userId}">
+        <input type="text" name="username" th:value="'@'+${user.username}" placeholder="Username" disabled>
+        <input type="text" name="firstname" th:value="${user.firstname}" placeholder="First Name">
+        <input type="text" name="lastname" th:value="${user.lastname}" placeholder="Last Name">
+        <input type="text" name="email" th:value="${user.email}" placeholder="Email">
+        <textarea name="bio" placeholder="Bio" rows="4" th:text="${user.bio}"></textarea>
+        <input type="file" name="profilePicture">
+       <!-- DOESNT WORK YET BECAUSE I DONT KNOW HOW TO : FILE-->
+<!--        <input type="submit" value="Update Profile">-->
+    </form>
+    <form action="/" method="get">
+        <input type="submit" value="Cancel">
+    </form>
+</div>
+</body>
+</html>

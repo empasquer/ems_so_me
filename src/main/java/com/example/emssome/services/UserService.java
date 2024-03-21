@@ -5,6 +5,9 @@ import com.example.emssome.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -49,4 +52,6 @@ public class UserService {
             return null;
         }
     }
+
+
 }

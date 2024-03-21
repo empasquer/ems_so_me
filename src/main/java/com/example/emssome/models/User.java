@@ -1,5 +1,6 @@
 package com.example.emssome.models;
 
+import java.sql.Blob;
 import java.time.LocalDateTime;
 
 public class User {
@@ -8,6 +9,8 @@ public class User {
     private String firstname;
     private String lastname;
     private String email;
+    private String bio;
+    private String profilePicture;
 
     public User() {
     }
@@ -32,6 +35,14 @@ public class User {
         return email;
     }
 
+    public String getBio() {
+        return bio;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
     public void setUserId(int userId) {
         this.userId = userId;
     }
@@ -50,5 +61,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
     }
 }

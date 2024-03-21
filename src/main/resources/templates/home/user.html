@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" href="/styles.css">
+    <title th:text="${user.username}"></title>
+
+</head>
+<body>
+<h1 th:text="${user.username} + '´s page'"></h1>
+<h2>View profile</h2>
+<img th:src="${user.profilePicture}">
+<img src="assets/empasquer.jpeg">
+<ul>
+  <li th:text="${user.firstname +' ' + user.lastname }"></li>
+  <li th:text="${user.email}"></li>
+  <li th:text="${user.bio}"></li>
+</ul>
+<form action="/update-user" method="get">
+  <input type="hidden" name="userId" th:value="${user.userId}">
+  <input class="submit" type="submit" value="Update">
+</form>
+<h2>Posts</h2>
+<div th:each="post : ${posts}" class="post">
+  <div class="post-content">
+    <span th:text="${post.content}"></span>
+  </div>
+  <div class="user-details">
+    <a th:href="@{'/user/' + ${userService.findUserById(post.userId).username}}">
+      @<span th:text="${userService.findUserById(post.userId).username}"></span>
+    </a>
+  </div>
+</div>
+</body>
+</html>
