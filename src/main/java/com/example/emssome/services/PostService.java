@@ -20,5 +20,9 @@ public class PostService {
         return postRepository.getPosts();
     }
 
+    public List<Post> getPostsByUserId(int userId) {
+        return postRepository.getPostsByUserId(userId);
+    }
+
 
 }
