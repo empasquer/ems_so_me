@@ -9,18 +9,13 @@
 <h1>Em's So Me</h1>
 <h2>Timeline</h2>
 <div th:each="post : ${posts}" class="post">
-<!--    <span th:text="${post.userId}"></span>-->
     <div class="post-content">
         <span th:text="${post.content}"></span>
     </div>
     <div class="user-details">
-        <a th:if="${userService.findUserById(post.userId) != null}"
-           th:href="@{'/user/' + ${userService.findUserById(post.userId)?.username}}">
-            @<span th:text="${userService.findUserById(post.userId)?.username}"></span>
+        <a th:href="@{'/user/' + ${userService.findUserById(post.userId).username}}">
+            @<span th:text="${userService.findUserById(post.userId).username}"></span>
         </a>
-        <span th:unless="${userService.findUserById(post.userId) != null}">
-            User not found
-        </span>
     </div>
 </div>
 

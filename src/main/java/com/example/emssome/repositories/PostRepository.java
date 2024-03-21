@@ -23,14 +23,8 @@ public class PostRepository {
     }
 
     public List<Post> getPostsByUserId(int userId) {
-        List<Post> userPosts = new ArrayList<>();
-        List<Post> posts = getPosts();
-
-        for (Post post : posts) {
-            if (post.getUserId() == userId) {
-                userPosts.add(post);
-            }
-        }
-        return userPosts;
+        String query = "SELECT * FROM post WHERE user_id = ?";
+        RowMapper<Post> rowMapper = new BeanPropertyRowMapper<>(Post.class);
+        return jdbcTemplate.query(query, rowMapper, userId);
     }
 }
