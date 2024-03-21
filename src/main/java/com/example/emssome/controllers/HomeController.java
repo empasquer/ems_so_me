@@ -44,7 +44,7 @@ public class HomeController {
     @GetMapping("/user/{username}")
     public String getUserPosts(@PathVariable String username, Model model) {
         User user = userService.findUserByUsername(username);
-
+        System.out.println(user.getUserId() + ' ' + user.getUsername());
         if (user != null) {
             model.addAttribute("posts", postService.getPostsByUserId(user.getUserId()));
             return "home/index";
