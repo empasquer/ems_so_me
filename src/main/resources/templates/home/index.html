@@ -3,22 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Em's SoMe</title>
 </head>
 <body>
-<h1>Em's So Me</h1>
-<h2>Timeline</h2>
-<div th:each="post : ${posts}" class="post">
-    <div class="post-content">
-        <span th:text="${post.content}"></span>
-    </div>
-    <div class="user-details">
-        <a th:href="@{'/user/' + ${userService.findUserById(post.userId).username}}">
-            @<span th:text="${userService.findUserById(post.userId).username}"></span>
-        </a>
+<div class="container">
+    <h1>Em's So Me</h1>
+    <h2>Timeline</h2>
+    <!-- Profile button -->
+    <!--Simulates that im connected as empasquer-->
+    <a th:href="@{'/user/empasquer'}" class="profile-button"><i class="fas fa-user"></i></a>
+    <form action="/add-post" method="post">
+        <textarea name="postContent" placeholder="Enter your new post content"></textarea>
+        <input type="submit" value="Add Post">
+    </form>
+
+    <!-- Iterate over user posts -->
+    <div th:each="post : ${posts}" class="post">
+        <div class="post-content">
+            <span th:text="${post.content}"></span>
+        </div>
+        <div class="user-details">
+            <a th:href="@{'/user/' + ${userService.findUserById(post.userId).username}}">
+                @<span th:text="${userService.findUserById(post.userId).username}"></span>
+            </a>
+        </div>
     </div>
 </div>
-
-
 </body>
 </html>

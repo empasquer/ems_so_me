@@ -8,6 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.time.LocalDateTime;
 
 @Controller
 public class HomeController {
@@ -39,6 +43,20 @@ public class HomeController {
         } else {
             return "home/user_not_found";
         }
+    }
+
+
+    @PostMapping("/add-post") // Update the mapping to match the form action
+    public String insertNewPost(@RequestParam String postContent) {
+        // Process the new post content
+
+        // Simulates that empasquer is connected
+        User user = userService.findUserById(2);
+
+        LocalDateTime currentDate = LocalDateTime.now();
+        postService.insertNewPost(user.getUserId(), postContent, currentDate);
+
+        return "redirect:/";
     }
 
 

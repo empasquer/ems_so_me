@@ -44,5 +44,20 @@ public class UserRepository {
         }
     }
 
+    public void save(User user) {
+        if (user.getUserId() == 0) {
+            // If the user ID is 0, it means it's a new user, so perform an insert operation
+            String query = "INSERT INTO user (username, firstname, lastname, email, bio) " +
+                    "VALUES (?, ?, ?, ?, ?)";
+            jdbcTemplate.update(query, user.getUsername(), user.getFirstname(), user.getLastname(),
+                    user.getEmail(), user.getBio());
+        } else {
+            // If the user ID is not 0, it means it's an existing user, so perform an update operation
+            String query = "UPDATE user SET firstname = ?, lastname = ?, " +
+                    "email = ?, bio = ? WHERE user_id = ?";
+            jdbcTemplate.update(query, user.getFirstname(), user.getLastname(),
+                    user.getEmail(), user.getBio(), user.getUserId());
+        }
+    }
 
 }

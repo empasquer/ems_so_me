@@ -1,34 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <link rel="stylesheet" href="/styles.css">
-    <title th:text="${user.username}"></title>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <title th:text="${user.username}"></title>
 </head>
 <body>
-<h1 th:text="${user.username} + '´s page'"></h1>
-<h2>View profile</h2>
-<img th:src="${user.profilePicture}">
-<img src="assets/empasquer.jpeg">
-<ul>
-  <li th:text="${user.firstname +' ' + user.lastname }"></li>
-  <li th:text="${user.email}"></li>
-  <li th:text="${user.bio}"></li>
-</ul>
-<form action="/update-user" method="get">
-  <input type="hidden" name="userId" th:value="${user.userId}">
-  <input class="submit" type="submit" value="Update">
-</form>
-<h2>Posts</h2>
-<div th:each="post : ${posts}" class="post">
-  <div class="post-content">
-    <span th:text="${post.content}"></span>
+<div class="container">
+  <!-- Return to index button -->
+  <a href="/" class="return-button"><i class="fas fa-home"></i></a>
+
+  <!-- User info box -->
+  <div class="user-info-box">
+    <h1 th:text="${user.username} + '\'s page'"></h1>
+    <!-- Display user profile picture -->
+    <img th:src="${user.profilePicture}" alt="Profile Picture">
+    <!-- Display user details -->
+    <ul>
+      <li th:text="${user.firstname + ' ' + user.lastname}"></li>
+      <li th:text="${user.email}"></li>
+      <li th:text="${user.bio}"></li>
+    </ul>
+    <!-- Form to update user information -->
+    <form action="/update-user" method="get">
+      <input type="hidden" name="userId" th:value="${user.userId}">
+      <button class="update-button" type="submit"><i class="fas fa-edit"></i></button>
+    </form>
   </div>
-  <div class="user-details">
-    <a th:href="@{'/user/' + ${userService.findUserById(post.userId).username}}">
-      @<span th:text="${userService.findUserById(post.userId).username}"></span>
-    </a>
+
+  <!-- Timeline box -->
+  <div class="timeline-box">
+
+    <h2>Posts</h2>
+    <form action="/add-post" method="post">
+      <textarea name="postContent" placeholder="Enter your new post content"></textarea>
+      <input type="submit" value="Add Post">
+    </form>
+    <!-- Iterate over user posts -->
+    <div th:each="post : ${posts}" class="post">
+      <div class="post-content">
+        <!-- Display post content -->
+        <span th:text="${post.content}"></span>
+      </div>
+      <div class="user-details">
+        <!-- Link to user's profile -->
+        <a th:href="@{'/user/' + ${userService.findUserById(post.userId).username}}">
+          @<span th:text="${userService.findUserById(post.userId).username}"></span>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 </body>
