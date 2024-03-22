@@ -116,10 +116,62 @@ a:hover {
 /* Custom list style for ul */
 ul {
     list-style-type: none;
+    padding-left : 0;
 }
 
 ul li:before {
     content: ">";
     color: #00ff00;
     margin-right: 10px;
+}
+
+/* Round profile picture */
+.user-info-box .profile-picture {
+    width: 150px; /* Adjust width as needed */
+    height: 150px; /* Adjust height as needed */
+    border-radius: 50%; /* Make it round */
+    overflow: hidden; /* Hide overflow */
+}
+
+.user-info-box .profile-picture img {
+    width: 100%; /* Ensure the image covers the container */
+    height: 100%; /* Ensure the image covers the container */
+    object-fit: cover; /* Maintain aspect ratio */
+}
+
+/* Add New Post form */
+.new-post-form {
+    border: 1px solid #00ff00; /* Green border */
+    border-radius: 20px; /* Rounded corners */
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.new-post-form textarea {
+    width: 98%;
+    border: none;
+    resize: none; /* Prevent resizing */
+    font-size: 16px;
+    padding: 10px;
+    background-color: #000; /* Black background */
+    color: #00ff00; /* Green text */
+}
+
+.new-post-form textarea::placeholder {
+    color: #444; /* Lighter green for placeholder */
+}
+
+.new-post-form input[type="submit"] {
+    background-color: #00ff00; /* Green button */
+    color: black; /* Black text */
+    border: none;
+    border-radius: 20px; /* Rounded corners */
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.new-post-form input[type="submit"]:hover {
+    background-color: #006400; /* Darker green on hover */
 }

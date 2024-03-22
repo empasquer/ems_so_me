@@ -15,7 +15,9 @@
   <div class="user-info-box">
     <h1 th:text="${user.username} + '\'s page'"></h1>
     <!-- Display user profile picture -->
-    <img th:src="${user.profilePicture}" alt="Profile Picture">
+    <div class="profile-picture">
+      <img th:src="${user.profilePicture}" alt="Profile Picture">
+    </div>
     <!-- Display user details -->
     <ul>
       <li th:text="${user.firstname + ' ' + user.lastname}"></li>
@@ -33,9 +35,9 @@
   <div class="timeline-box">
 
     <h2>Posts</h2>
-    <form action="/add-post" method="post">
-      <textarea name="postContent" placeholder="Enter your new post content"></textarea>
-      <input type="submit" value="Add Post">
+    <form action="/add-post" method="post" class="new-post-form">
+      <textarea name="postContent" placeholder="What's on your mind?"></textarea>
+      <input type="submit" value="Send new post">
     </form>
     <!-- Iterate over user posts -->
     <div th:each="post : ${posts}" class="post">
