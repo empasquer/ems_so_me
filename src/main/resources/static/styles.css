@@ -142,7 +142,7 @@ ul li:before {
 /* Add New Post form */
 .new-post-form {
     border: 1px solid #00ff00; /* Green border */
-    border-radius: 20px; /* Rounded corners */
+/*    border-radius: 20px; !* Rounded corners *!*/
     padding: 10px;
     margin-bottom: 20px;
 }
